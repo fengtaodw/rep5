@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean id="date" class="java.util.Date"></bean>
+    <bean id="person" class="com.itheima.di.Person">
+        <property name="name" value="白娘子"></property>
+        <property name="age" value="18"></property>
+        <property name="address" value="青城山"></property>
+        <property name="birthday" ref="date"></property>
+    </bean>
+
+    <bean id="person2" class="com.itheima.di.Person">
+        <property name="name" value="白娘子2"></property>
+        <property name="age" value="182"></property>
+        <property name="address" value="青城山2"></property>
+        <property name="birthday" ref="date"></property>
+    </bean>
+
+    <bean id="complexBean" class="com.itheima.di.ComplexBean">
+        <property name="arr">
+            <array>
+                <value>杨过</value>
+                <value>龙女</value>
+                <value>志平</value>
+                <value>法王</value>
+            </array>
+        </property>
+        <property name="list">
+           <list>
+               <ref bean="person"></ref>
+               <ref bean="person2"></ref>
+           </list>
+        </property>
+        <property name="set">
+            <set>
+                <value>段誉</value>
+                <value>乔峰</value>
+                <value>虚竹</value>
+            </set>
+        </property>
+        <property name="map">
+            <map>
+                <entry key="m1" value-ref="person"></entry>
+                <entry key="m2" value-ref="person2"></entry>
+            </map>
+        </property>
+        <property name="properties">
+            <props>
+                <prop key="k1">无忌</prop>
+                <prop key="k2">赵敏</prop>
+                <prop key="k2">芷若</prop>
+            </props>
+        </property>
+    </bean>
+</beans>

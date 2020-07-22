@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="date" class="java.util.Date"></bean>
+
+    <!--创建Person对象，并且给Person对象赋值
+       赋值内部原理:
+       name="name"  -name -setName-反射setName()方法-给对象赋值
+    -->
+    <bean id="person" class="com.itheima.di.Person" scope="prototype">
+        <property name="name" value="柳岩"></property>
+        <property name="address" value="上海"></property>
+        <property name="age" value="18"></property>
+        <!--如果是非基本类型，则需要使用ref属性-->
+        <property name="birthday" ref="date"></property>
+
+    </bean>
+    <!--通过有参构造给对象赋值-->
+
+    <bean id="person2" class="com.itheima.di.Person" scope="prototype">
+        <constructor-arg name="name" value="诗诗"></constructor-arg>
+        <constructor-arg name="address" value="北京"></constructor-arg>
+        <constructor-arg name="age" value="30"></constructor-arg>
+        <constructor-arg name="birthday" ref="date"></constructor-arg>
+    </bean>
+
+    <!--使用p的简化方式调用set方法给对象赋值-->
+    <bean id="person3" class="com.itheima.di.Person" scope="prototype"
+          p:name="柳岩2" p:address="上海2" p:age="18" p:birthday-ref="date">
+        <!--<property name="name" value="柳岩"></property>-->
+        <!--<property name="address" value="上海"></property>-->
+        <!--<property name="age" value="18"></property>-->
+        <!--&lt;!&ndash;如果是非基本类型，则需要使用ref属性&ndash;&gt;-->
+        <!--<property name="birthday" ref="date"></property>-->
+
+    </bean>
+
+    <!--使用c的简化方式调用构造方法给对象赋值-->
+    <bean id="person4" class="com.itheima.di.Person" scope="prototype"
+          c:name="柳岩3" c:address="上海3" c:age="19" c:birthday-ref="date">
+        <!--<property name="name" value="柳岩"></property>-->
+        <!--<property name="address" value="上海"></property>-->
+        <!--<property name="age" value="18"></property>-->
+        <!--&lt;!&ndash;如果是非基本类型，则需要使用ref属性&ndash;&gt;-->
+        <!--<property name="birthday" ref="date"></property>-->
+
+    </bean>
+
+</beans>

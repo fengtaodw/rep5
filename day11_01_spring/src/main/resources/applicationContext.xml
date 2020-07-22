@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+   <!--
+     id：是bean标签的唯一标识
+     class：要给哪个类造对象，写上这类的全路径名
+
+     使用Java来描述以下的标签的作用:
+       UserService service = new UserService();
+       service.setName("宝强")
+   -->
+
+    <bean id="userService" class="com.itheima.service.UserService">
+        <!--
+         property:给对象的成员赋值
+           name :类变量名
+           value:类变量的值
+        -->
+        <property name="username" value="宝强"></property>
+    </bean>
+
+    <!--该配置可以让Spring给我们通过构造方法来造对象-->
+    <!--<bean id="user" class="com.itheima.ioc.User"></bean>-->
+   <!--
+   我们可以设置Spring在创建对象时，是单例还是会多例
+   scope="singleton" 单例
+   scope="protoType" 多例
+
+   -->
+    <bean id="user" class="com.itheima.ioc.User" scope="prototype"></bean>
+
+    <!--通过静态工厂造对象-->
+    <bean id="user02" class="com.itheima.ioc.StaticFactoryBean" factory-method="getUser"></bean>
+
+    <!--通过非静态工厂造对象-->
+
+    <!-- 1 先创建实例工厂对象-->
+    <bean id="factoryBean" class="com.itheima.ioc.FactoryBean"></bean>
+    <!-- 2 再创建user对象-->
+    <bean id="user03" factory-bean="factoryBean"  factory-method="getUser"></bean>
+
+    <!--
+      验证Spring对象的创建和销毁
+    init-method="init" :当对象创建时执行Student类中的init方法
+    destroy-method="destroy" :当对象销毁时执行Student类中的destroy方法
+    -->
+    <bean id="student" class="com.itheima.life.Student" init-method="init" destroy-method="destroy"></bean>
+
+</beans>

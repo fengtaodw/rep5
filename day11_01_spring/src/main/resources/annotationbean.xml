@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd 
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+    <!--设置包扫描器:
+    base-package:来指定包的名字，制定了这个包之后，Spring回去检测该包的下面有哪些类添加了@Component注解，则自动给你
+    创建该类的对象
+    默认情况下，每一个类的id就是当前类的名字，然后第一个字母小写
+      -->
+     <context:component-scan base-package="com.itheima.annotation"></context:component-scan>
+     <context:component-scan base-package="com.itheima.xxx"></context:component-scan>
+
+</beans>
